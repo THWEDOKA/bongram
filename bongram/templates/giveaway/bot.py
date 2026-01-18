@@ -161,6 +161,8 @@ async def process_end_date(message: Message, state: FSMContext):
             text,
             reply_markup=build_giveaway_keyboard(giveaway_id, message.from_user.id)
         )
+    except ValueError:
+        await message.answer("❌ Введите число!")
 
 @dp.callback_query(F.data.startswith("view_"))
 async def view_giveaway(callback: CallbackQuery):
